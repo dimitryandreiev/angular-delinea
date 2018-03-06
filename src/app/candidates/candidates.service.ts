@@ -10,14 +10,14 @@ import { AuthService } from '../login/auth.service';
 export class CandidatesService {
   candidates: any = [];
   private apiUrl = 'http://delineaapi.herokuapp.com/';
-  private token = 'Bearer ' + JSON.parse(localStorage.getItem('currentUser')).token;
+  /*private token = 'Bearer ' + JSON.parse(localStorage.getItem('currentUser')).token;
   private headers = new Headers(
     { 
       'Content-Type': 'application/json', 
       'Authorization': this.token 
     }
   );
-  private options = new RequestOptions({ headers: this.headers });
+  private options = new RequestOptions({ headers: this.headers });*/
 
   constructor(
     private http: Http,
@@ -25,13 +25,12 @@ export class CandidatesService {
   ) { }
 
   getCandidatesList() {
+    //@TODO pegar do servidor os candidatos
     /*this.candidates = this.http.get(this.apiUrl  + '/candidatos' + id;)
 		 	.toPromise()
 		 	.then(response => response.json())
 		 	.catch(this.handleError);*/
-
-
-    //@TODO pegar do servidor os candidatos
+    
     this.candidates = [
       {
           id: "1",
@@ -69,7 +68,7 @@ export class CandidatesService {
   }
 
   getCandidate(id: number) {
-
+    //@TODO fazer lógica de buscar cancidato pelo servidor
     /*let candidate = this.http.get(this.apiUrl  + '/candidato/' + id;)
 		 	.toPromise()
 		 	.then(response => response.json())
@@ -90,17 +89,17 @@ export class CandidatesService {
 
   addCandidate(candidate: Candidate) {
     //@TODO fazer lógica para adicionar candidato
-    let headers = new Headers({'Content-Type': 'application/json'});
+    /*let headers = new Headers({'Content-Type': 'application/json'});
     let options = new RequestOptions ({ headers: headers });
 
     return this.http.post(this.apiUrl, candidate, options)
 		 	.toPromise()
-		 	.then(res => res.json());
+		 	.then(res => res.json());*/
   }
 
   editCandidate(candidate: Candidate, id) {
     //@TODO fazer lógica para editar candidato
-	 	delete candidate.id;
+	 	/*delete candidate.id;
 	 	let headers = new Headers({ 'Content-Type': 'application/json' });
 	 	let options = new RequestOptions({ headers: headers });
  
@@ -108,7 +107,7 @@ export class CandidatesService {
 
 	 	return this.http.put(url, candidate, options)
 		 	.toPromise()
-		 	.then(res => res.json());
+		 	.then(res => res.json());*/
   }
 
   removeCandidate(id: number) {
