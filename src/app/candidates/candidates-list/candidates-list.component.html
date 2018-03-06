@@ -1,43 +1,32 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<div class="container">
+    <h1>Lista de candidatos</h1>
 
-    <title>Listagem</title>
-</head>
-
-<body>
-    <div class="container">
-        <h1>Lista de candidatos</h1>
-
-        <div class="list-candidates">
-            <table>
-                <tr>
-                    <th>Nome completo</th>
-                    <th>E-mail</th>
-                    <th>Telefone</th>
-                    <th></th>
-                </tr>
-                <tr class="candidate" *ngFor="let candidate of candidatesList">
-                    <td>{{ candidate.name }}</td>
-                    <td>{{ candidate.email }}</td>
-                    <td>{{ candidate.phone }}</td>
-                    <td>
-                        <div class="actions">
-                            <button title="Editar" (click) = "editCandidate(candidate.id)">
+    <div class="list-candidates">
+        <table>
+            <tr>
+                <th>Nome completo</th>
+                <th>E-mail</th>
+                <th>Telefone</th>
+                <th></th>
+            </tr>
+            <tr class="candidate" *ngFor="let candidate of candidatesList">
+                <td>{{ candidate.fullName }}</td>
+                <td>{{ candidate.email }}</td>
+                <td>{{ candidate.phone }}</td>
+                <td>
+                    <div class="actions">
+                        <a class="btn-floating btn waves-effect waves-light" (click) = "editCandidate(candidate.id)">
                                 <i class="material-icons">edit</i>
-                            </button>
-                            <button title="Excluir" (click) = "deleteCandidate(candidate.id)"><i class="material-icons">delete</i></button>
-                        </div>
-                    </td>
-                </tr>
-            </table>
-        </div>
-        <div class="footer">
-            <button class="btn waves-effect waves-light" name="action" (click)="addCandidate()">Adicionar Candidato</button>
-        </div>
+                        </a>
+                        <a class="btn-floating btn waves-effect waves-light" (click) = "deleteCandidate(candidate.id)">
+                            <i class="material-icons">delete</i>
+                        </a>
+                    </div>
+                </td>
+            </tr>
+        </table>
     </div>
-    
-</body>
-</html>
+    <div class="footer">
+        <button class="btn waves-effect waves-light" name="action" (click)="addCandidate()">Adicionar Candidato</button>
+    </div>
+</div>

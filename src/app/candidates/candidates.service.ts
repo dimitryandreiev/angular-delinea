@@ -37,7 +37,7 @@ export class CandidatesService {
           fullName: "Dimitry",
           rg: '235.279.55',
           birthday: '19/03/1986',
-          phone: '(48) 996724274',
+          phone: '(48) 9967-24274',
           user: 'try',
           email: 'djmcliff3@gmail.com',
           password: 'babooshka'
@@ -47,7 +47,7 @@ export class CandidatesService {
           fullName: "Xablau",
           rg: '111.111.55',
           birthday: '19/03/1986',
-          phone: '(48) 996724274',
+          phone: '(48) 9967-24274',
           user: 'Xablau',
           email: 'xablau@gmail.com',
           password: 'xablooshka'                        
@@ -57,7 +57,7 @@ export class CandidatesService {
           fullName: "Dimitry Andreiev",
           rg: '111.222.55',
           birthday: '19/03/1986',
-          phone: '(48) 996724274',
+          phone: '(48) 9967-24274',
           user: 'Dimy',
           email: 'dimy3@gmail.com',
           password: 'dimidimi'                        
@@ -111,6 +111,16 @@ export class CandidatesService {
   }
 
   removeCandidate(id: number) {
+    let candidates = this.getCandidatesList();
+
+    for (let i=0; i< this.candidates.length; i++) {
+      let candidate = this.candidates[i];
+
+      if (candidate.id == id) {
+        this.candidates.splice(i, 1);
+      }
+    }
+  
     //@TODO fazer lógica para excluir candidato
 	 	/*return this.http.delete(this.apiUrl + '/' + id)
 		 	.toPromise()
