@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { AuthService } from './auth.service';
 import { User } from './user';
@@ -12,7 +13,10 @@ export class LoginComponent implements OnInit {
 
   private user:  User = new User();
 
-  constructor(private authService: AuthService) { }
+  constructor(
+    private authService: AuthService,
+    private router: Router
+  ) { }
 
   ngOnInit() {
   }
@@ -23,7 +27,7 @@ export class LoginComponent implements OnInit {
   }
 
   cadastrate() {
-    
+    this.router.navigate (['/candidatos/novo']);
   }
 
 }

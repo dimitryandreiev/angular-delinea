@@ -11,12 +11,11 @@ const candidatesRoutes = [
     {
         path: 'candidatos', 
         component: CandidatesComponent,
-        canActivate: [AuthGuard],
         children: [
-            { path: '', component: CandidatesListComponent },
-            { path: 'naoEncontrado', component: CandidateNotFoundComponent },
+            { path: '', component: CandidatesListComponent, canActivate: [AuthGuard] },
+            { path: 'naoEncontrado', component: CandidateNotFoundComponent, canActivate: [AuthGuard] },
             { path: 'novo', component: CandidatesFormComponent },
-            { path: 'editar/:id', component: CandidatesFormComponent }
+            { path: 'editar/:id', component: CandidatesFormComponent, canActivate: [AuthGuard] }
         ]
     }
 ];
