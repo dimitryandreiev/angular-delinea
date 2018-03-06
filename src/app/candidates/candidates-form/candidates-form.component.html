@@ -1,0 +1,73 @@
+<h3> {{ title }} Candidato </h3>
+
+<form class="form-candidates" #candidateForm="ngForm" (ngSubmit)="onSubmit(candidateForm)">
+    <div class="row">
+        <div class="col s1">Nome:</div>
+        <div class="col s11">
+            <input placeholder="Digite o nome" id="fullName" name = "fullName" 
+            [(ngModel)] = "candidate.fullName" type="text" class="validate" 
+            required #fullName="ngModel">
+            <div *ngIf="!fullName.valid && fullName.touched">
+                Nome obrigatório.
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s1">RG:</div>
+        <div class="col s11">
+            <input placeholder="____.____.__" id="rg" name = "rg"
+            [(ngModel)] = "candidate.rg" type="text" class="validate">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s1">Data de nascimento:</div>
+        <div class="col s11">
+            <input placeholder="__/__/____" id="birthday" name = "birthday"
+            [(ngModel)] = "candidate.birthday" type="text" class="validate">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s1">Telefone:</div>
+        <div class="col s11">
+            <input placeholder="( ) ____-____" id="phone"  name="phone"
+            [(ngModel)] = "candidate.phone" type="number" class="validate">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s1">Username:</div>
+        <div class="col s11">
+            <input placeholder="Digite o userName" id="user"  name="user"
+            [(ngModel)] = "candidate.user" type="text" class="validate"
+            required #user="ngModel">
+            <div *ngIf="!user.valid && user.touched">
+                    Usuário é um campo obrigatório.
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s1">E-mail:</div>
+        <div class="col s11">
+            <input placeholder="email@example.com" id="email" name="email"
+            [(ngModel)] = "candidate.email" type="email" class="validate"
+            required email #email="ngModel">
+            <div *ngIf="!email.valid && email.touched">
+                Digite um e-mail válido.
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s1">Senha:</div>
+        <div class="input-field inline  col s11">
+            <input placeholder="Digite o nome" id="password" name="password"
+            [(ngModel)] = "candidate.password" type="password" class="validate"
+            required #password="ngModel">
+            <div *ngIf="!password.valid && password.touched">
+                    Senha é um campo obrigatório.
+            </div>
+        </div>
+    </div>
+    <footer>
+        <button type="submit" class="btn btn-primary" [disabled]="!candidateForm.valid">Salvar</button>
+        <button type="reset" class="btn btn-primary">Cancelar</button>
+    </footer>
+</form>

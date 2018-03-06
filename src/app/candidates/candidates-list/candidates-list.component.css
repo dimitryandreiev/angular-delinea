@@ -1,0 +1,35 @@
+h1 {
+    text-align: center;
+}
+
+.list-candidates table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.list-candidates td, th {
+    text-align: left;
+    padding: 8px;
+}
+
+.list-candidates tr:nth-child(even) {
+    background-color: #dddddd;
+}
+
+.list-candidates .actions button {
+    display: inline-block;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    align: right;
+}
+
+.form-action button {
+    display: inline-block;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    outline: none;
+}

@@ -1,0 +1,12 @@
+* {
+    box-sizing: border-box;
+}
+
+ng-invalid.ng-touched:not(form) {
+    border: 1px solid red;
+}
+
+body {
+    padding: 0 20px 200px;
+    background-color: #ffffff;
+}

@@ -1,0 +1,19 @@
+<!--The content below is only a placeholder and can be replaced.-->
+
+<nav *ngIf="showMenu" background-color= "#ffffff">
+  <div class="nav-wrapper">
+    <a routerLink='' class="brand-logo right" >DelineaAPI</a>
+    <ul class="left hide-on-med-and-down">
+      <li routerLinkActive='active'>
+        <a routerLink=''>home</a>
+      </li>
+      <li routerLinkActive='active'>
+        <a routerLink='candidatos'>candidatos</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<div class="container">
+  <router-outlet></router-outlet>
+</div>
