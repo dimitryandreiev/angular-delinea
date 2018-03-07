@@ -4,7 +4,7 @@ export class Candidate {
     rg: String;
     birth_date : String;
     phone: String;
-    user: String;
+    username: String;
     email: String;
     password: String;
 }

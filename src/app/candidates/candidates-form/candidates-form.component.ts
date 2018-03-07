@@ -64,5 +64,11 @@ export class CandidatesFormComponent implements OnInit {
         }
       }
     );
+
+    this.router.navigate(['']);
+  }
+
+  returnScreen () {
+    this.router.navigate (['/candidatos']);
   }
 }

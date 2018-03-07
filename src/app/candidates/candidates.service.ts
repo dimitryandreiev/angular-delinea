@@ -32,7 +32,7 @@ export class CandidatesService {
     }
 
     addCandidate(candidate: Candidate) {
-        let url = this.apiUrl + '/candidate';
+        let url = this.apiUrl + '/candidate/';
 
         return this.http.post(url, JSON.stringify(candidate), this.options)
             .map((res: Response) => res.json())
@@ -47,12 +47,12 @@ export class CandidatesService {
         let url = this.apiUrl + '/candidate/' + id;
 
         return this.http.put(url, JSON.stringify(candidate), this.options)
-        .map((res: Response) => res.json())
-        .subscribe(data => {
-            alert('ok');
-        }, error => {
-            console.log(JSON.stringify(error.json()));
-        });
+            .map((res: Response) => res.json())
+            .subscribe(data => {
+                //@TODO alerta de sucesso
+            }, error => {
+                console.log(JSON.stringify(error.json()));
+            });
     }
 
     removeCandidate(id) {
@@ -65,11 +65,11 @@ export class CandidatesService {
         let options = new RequestOptions({ headers: headers });
 
         return this.http.delete(url, id)
-        .map((res: Response) => res.json())
-        .subscribe(data => {
-            alert('ok');
-        }, error => {
-            console.log(JSON.stringify(error.json()));
-        });
+            .map((res: Response) => res.json())
+            .subscribe(data => {
+                alert('ok');
+            }, error => {
+                console.log(JSON.stringify(error.json()));
+            });
     }
 }

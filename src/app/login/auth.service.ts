@@ -16,8 +16,8 @@ export class AuthService {
     'Content-Type': 'application/x-www-form-urlencoded'
   });
   private options = new RequestOptions({ headers: this.headers });
-  private client_id = ' Rb6yDNb6muY6Wr9iGybl193VzO6BqOuleLGblg14';
-  private client_secret = ' NjsLaIedGub9LC2xAKHIt7kiN4DiSBLolT74w2PYrOu4PPdRxCNqgZDLS1UlqwSQry2HSmRj2 1MWcOiKOuLq8UtsD0LBic26SxJAEHqf7AaZ5C6sOSG9WrHf3gOzJkmY';
+  private client_id = 'QXBs2sW7qIDTnHpJuFiXQsLWpfyeo9iixK0suvpK';
+  private client_secret = 'TmNEOYKR1D5PrNwvGJMyBE2TbZ45OlXLkFgNzdyFsg7FaG3Y7I9njVkWKw4O0IFRRviYzXIDi4ZHem41APoyMDZ4Z1icP1JPEzTxe3uQUFrapy4BLEJXS3hxsqY38ujk';
 
   private userAuth: boolean = false;
   showMenuEmitter = new EventEmitter<boolean>();
@@ -30,23 +30,7 @@ export class AuthService {
     this.token = currentUser && currentUser.token;
   }
   
-  getUser() {
-    return this.http
-      .get(`http://delineaapi.herokuapp.com/`)
-      .map((res:Response) => res.json());
-  }
-
-  profile = {};
-
   authenticServer(user: User) {
-    /*let body = 
-      {
-         client_id: this.client_id, 
-         client_secret: this.client_secret,
-         grant_type:'password',
-         username: 'teste@delinea.com',
-         password: '123'
-      };*/
     let body = "client_id=" + this.client_id +
       "&client_secret=" + this.client_secret +
       "&grant_type=password" +
@@ -54,72 +38,28 @@ export class AuthService {
       "&password=" + user.password;
 
     let teste = this.http.post(this.url, body, this.options)
-    .map((res: Response) => res.json())
-    .subscribe(result => {
-      let token = result.token;
-
-      if (token) {
-        this.token = token;
-        localStorage.setItem('currentUser', JSON.stringify({ 
-          client_id: this.client_id, token: token 
-        }));
-
-        //login OK
-        //this.makeLogin(user);
-        return true;
-      } else {
-        // don't do login
-        return false;
-      }
-    }, error => {
-      console.log(JSON.stringify(error.json()));
-    });
-
-    /*let teste = this.http.post(this.url, body, this.options)
       .map((res: Response) => res.json())
-      .subscribe(data => {
-          alert('ok');
-      }, error => {
-          console.log(JSON.stringify(error.json()));
-      });*/
+      .subscribe(result => {
+        let token = result.token;
 
-      /**/
+        if (token) {
+          this.token = token;
+          localStorage.setItem('currentUser', JSON.stringify({ 
+            client_id: this.client_id, token: token 
+          }));
+          //this.makeLogin(user);
+          return true;
+        } else {
+          return false;
+        }
+      }, error => {
+        console.log(JSON.stringify(error.json()));
+      });
   }
 
   logout(): void {
       this.token = null;
       localStorage.removeItem('currentUser');
-  }
-
-  makeLogin(user: User) {
-    let login_client_id = '???';
-    let login_client_secret = '???';
-    let loginHeaders = new Headers( {'Content-Type': 'application/x-www-form-urlencoded'});
-    let loginOptions = new RequestOptions({ headers: loginHeaders });
-    let body = JSON.stringify(
-      {
-         client_id: this.client_id, 
-         client_secret: this.client_secret,
-         grant_type:'password', 
-         username: user.userName, 
-         password: user.password, 
-      }
-    );
-
-    //@Fazer lógica de verificação de conexão com server
-    /*if (conection) {
-
-      this.userAuth = true;
-
-      this.showMenuEmitter.emit(true);
-
-      this.router.navigate(['/']);
-
-    } else {
-      this.userAuth = false;
-
-      this.showMenuEmitter.emit(false);
-    }*/
   }
 
   login(user: User) {
