@@ -14,7 +14,7 @@ export class CandidatesFormComponent implements OnInit {
 
   id: number;
   inscription: Subscription
-  candidate: any;
+  candidate: any = [];
   title: String;
 
   constructor(
@@ -25,21 +25,22 @@ export class CandidatesFormComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    
     this.title = 'Adicionar';
-    this.candidate = [];
 
     this.inscription = this.route.params.subscribe(
       (params: any) => {
         if (params['id'] != null) {
           this.id = params['id'];
 
-          this.candidate = this.candidateService.getCandidate(this.id);
-
-          if (this.candidate == null) {
-            this.router.navigate(['/candidatos/naoEncontrado']);
-          }
-
-          this.title = 'Editar';
+          this.candidateService.getCandidate(this.id)
+            .subscribe(data => {
+                this.candidate = data;
+                this.title = 'Editar';
+              }, error => {
+                this.router.navigate(['/candidatos/naoEncontrado']);
+              }
+            );
         }
       }
     );
@@ -50,15 +51,13 @@ export class CandidatesFormComponent implements OnInit {
   }
 
   onSubmit(candidateForm) {
-    this.candidate = JSON.stringify(candidateForm.value);
+    this.candidate = candidateForm.value;
 
     this.inscription = this.route.params.subscribe(
       (params: any) => {
         this.id = params['id'];
 
-        this.candidate = this.candidateService.getCandidate(this.id);
-
-        if (this.candidate == null) {
+        if (this.id == null) {
           this.candidateService.addCandidate(this.candidate);
         } else {
           this.candidateService.editCandidate(this.candidate, this.id);

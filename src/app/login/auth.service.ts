@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Http, Response, RequestOptions, Headers } from '@angular/http';
 import { HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import 'rxjs/add/operator/map';
 
 import { User } from './user';
 
@@ -11,10 +12,12 @@ export class AuthService {
 
   public token: string;
   private url = 'https://delineaapi.herokuapp.com/o/token/';
-  private headers = new Headers( {'Content-Type': 'application/json'});
+  private headers = new Headers( {
+    'Content-Type': 'application/x-www-form-urlencoded'
+  });
   private options = new RequestOptions({ headers: this.headers });
-  private client_id = ' Rb6yDNb6muY6Wr9iGybl193VzO6BqOuleLGblg14 ';
-  private client_secret = ' NjsLaIedGub9LC2xAKHIt7kiN4DiSBLolT74w2PYrOu4PPdRxCNqgZDLS1UlqwSQry2HSmRj2 1MWcOiKOuLq8UtsD0LBic26SxJAEHqf7AaZ5C6sOSG9WrHf3gOzJkmY  ';
+  private client_id = ' Rb6yDNb6muY6Wr9iGybl193VzO6BqOuleLGblg14';
+  private client_secret = ' NjsLaIedGub9LC2xAKHIt7kiN4DiSBLolT74w2PYrOu4PPdRxCNqgZDLS1UlqwSQry2HSmRj2 1MWcOiKOuLq8UtsD0LBic26SxJAEHqf7AaZ5C6sOSG9WrHf3gOzJkmY';
 
   private userAuth: boolean = false;
   showMenuEmitter = new EventEmitter<boolean>();
@@ -36,32 +39,51 @@ export class AuthService {
   profile = {};
 
   authenticServer(user: User) {
-    let body = JSON.stringify(
+    /*let body = 
       {
          client_id: this.client_id, 
-         client_secret: this.client_secret
+         client_secret: this.client_secret,
+         grant_type:'password',
+         username: 'teste@delinea.com',
+         password: '123'
+      };*/
+    let body = "client_id=" + this.client_id +
+      "&client_secret=" + this.client_secret +
+      "&grant_type=password" +
+      "&username=" + user.userName +
+      "&password=" + user.password;
+
+    let teste = this.http.post(this.url, body, this.options)
+    .map((res: Response) => res.json())
+    .subscribe(result => {
+      let token = result.token;
+
+      if (token) {
+        this.token = token;
+        localStorage.setItem('currentUser', JSON.stringify({ 
+          client_id: this.client_id, token: token 
+        }));
+
+        //login OK
+        //this.makeLogin(user);
+        return true;
+      } else {
+        // don't do login
+        return false;
       }
-    );
-
-    return this.http.post(this.url, body, this.options)
-      .map((response: Response) => {
-        let token = response.json() && response.json().token;
-        console.log('entrando');
-
-        if (token) {
-          this.token = token;
-          localStorage.setItem('currentUser', JSON.stringify({ 
-            client_id: this.client_id, token: token 
-          }));
-
-          //login OK
-          //this.makeLogin(user);
-          return true;
-        } else {
-          // don't do login
-          return false;
-        }
+    }, error => {
+      console.log(JSON.stringify(error.json()));
     });
+
+    /*let teste = this.http.post(this.url, body, this.options)
+      .map((res: Response) => res.json())
+      .subscribe(data => {
+          alert('ok');
+      }, error => {
+          console.log(JSON.stringify(error.json()));
+      });*/
+
+      /**/
   }
 
   logout(): void {

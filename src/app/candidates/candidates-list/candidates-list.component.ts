@@ -17,17 +17,23 @@ export class CandidatesListComponent implements OnInit {
     private candidatesService: CandidatesService,
     private router: Router
   ) { 
-    this.candidatesList = this.candidatesService.getCandidatesList();
+    this.candidatesList = this.candidatesService.getCandidatesList()
+      .subscribe(data => {
+        this.candidatesList = data;
+        }, error => {
+        console.log(JSON.stringify(error.json()));
+      }
+  );
   }
 
   ngOnInit() {
   }
 
-  editCandidate (id) {
+  navigateToEdit (id) {
     this.router.navigate (['/candidatos/editar', id]);
   }
 
-  addCandidate () {
+  navigateToAdd () {
     this.router.navigate (['/candidatos/novo']);
   }
 

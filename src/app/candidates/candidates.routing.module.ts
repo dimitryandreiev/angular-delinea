@@ -15,7 +15,7 @@ const candidatesRoutes = [
             { path: '', component: CandidatesListComponent, canActivate: [AuthGuard] },
             { path: 'naoEncontrado', component: CandidateNotFoundComponent, canActivate: [AuthGuard] },
             { path: 'novo', component: CandidatesFormComponent },
-            { path: 'editar/:id', component: CandidatesFormComponent, canActivate: [AuthGuard] }
+            { path: 'editar/:id', component: CandidatesFormComponent }
         ]
     }
 ];

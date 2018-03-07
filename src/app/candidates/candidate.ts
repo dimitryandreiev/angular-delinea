@@ -1,8 +1,8 @@
 export class Candidate {
     id: number;
-    fullName: String;
+    full_name: String;
     rg: String;
-    birthday: String;
+    birth_date : String;
     phone: String;
     user: String;
     email: String;

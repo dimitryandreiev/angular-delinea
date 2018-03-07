@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    this.authService.authenticServer(this.user);
+    //this.authService.authenticServer(this.user);
     this.authService.login(this.user);
   }
 

@@ -10,12 +10,12 @@
                 <th></th>
             </tr>
             <tr class="candidate" *ngFor="let candidate of candidatesList">
-                <td>{{ candidate.fullName }}</td>
+                <td>{{ candidate.full_name }}</td>
                 <td>{{ candidate.email }}</td>
                 <td>{{ candidate.phone }}</td>
                 <td>
                     <div class="actions">
-                        <a class="btn-floating btn waves-effect waves-light" (click) = "editCandidate(candidate.id)">
+                        <a class="btn-floating btn waves-effect waves-light" (click) = "navigateToEdit(candidate.id)">
                                 <i class="material-icons">edit</i>
                         </a>
                         <a class="btn-floating btn waves-effect waves-light" (click) = "deleteCandidate(candidate.id)">
@@ -27,6 +27,6 @@
         </table>
     </div>
     <div class="footer">
-        <button class="btn waves-effect waves-light" name="action" (click)="addCandidate()">Adicionar Candidato</button>
+        <button class="btn waves-effect waves-light" name="action" (click)="navigateToAdd()">Adicionar Candidato</button>
     </div>
 </div>

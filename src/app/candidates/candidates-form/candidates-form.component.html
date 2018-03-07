@@ -4,10 +4,10 @@
     <div class="row">
         <div class="col s1">Nome:</div>
         <div class="col s11">
-            <input placeholder="Digite o nome" id="fullName" name = "fullName" 
-            [(ngModel)] = "candidate.fullName" type="text" class="validate" 
-            required #fullName="ngModel">
-            <div *ngIf="!fullName.valid && fullName.touched">
+            <input placeholder="Digite o nome" id="full_name" name = "full_name" 
+            [(ngModel)] = "candidate.full_name" type="text" class="validate" 
+            required #full_name="ngModel">
+            <div *ngIf="!full_name.valid && full_name.touched">
                 Nome obrigatório.
             </div>
         </div>
@@ -22,8 +22,8 @@
     <div class="row">
         <div class="col s1">Data de nascimento:</div>
         <div class="col s11">
-            <input placeholder="__/__/____" id="birthday" name = "birthday"
-            [(ngModel)] = "candidate.birthday" type="text" class="validate">
+            <input placeholder="__/__/____" id="birth_date " name = "birth_date "
+            [(ngModel)] = "candidate.birth_date " type="text" class="validate">
         </div>
     </div>
     <div class="row">
