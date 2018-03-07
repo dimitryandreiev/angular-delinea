@@ -37,7 +37,7 @@ export class CandidatesService {
         return this.http.post(url, JSON.stringify(candidate), this.options)
             .map((res: Response) => res.json())
             .subscribe(data => {
-                alert('ok');
+               //@TODO alerta de sucesso
             }, error => {
                 console.log(JSON.stringify(error.json()));
             });
@@ -67,7 +67,7 @@ export class CandidatesService {
         return this.http.delete(url, id)
             .map((res: Response) => res.json())
             .subscribe(data => {
-                alert('ok');
+                //@TODO mensagem de alerta de exclusão
             }, error => {
                 console.log(JSON.stringify(error.json()));
             });
